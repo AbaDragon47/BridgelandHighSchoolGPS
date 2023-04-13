@@ -15,9 +15,8 @@ public class movement : MonoBehaviour
     
     void Start() {
 
-        cam = GetComponent<Camera>();
-        //Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        cam = GetComponentInChildren<Camera>();
+        cam.transform.position= transform.position+ new Vector3(0,1,0);
     }
 
     private void LateUpdate()
@@ -30,7 +29,10 @@ public class movement : MonoBehaviour
             cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
         else
             cam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
-        //transform.rotation = Quaternion.Euler(0, yRot, 0);
+        //follow player
+        cam.transform.position= transform.position+ new Vector3(0,1,0);
+
+        //maybe i should lock rotation so that i doesnt go through player object
     }
     void Move()
     {
