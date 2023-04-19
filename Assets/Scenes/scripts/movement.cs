@@ -29,7 +29,8 @@ public class movement : MonoBehaviour
     {
         //called after all physics changes
         //Move();
-        rb.AddForce(moveInput*sens,ForceMode.VelocityChange);
+        rb.drag=6f;
+        rb.AddRelativeForce(moveInput*sens,ForceMode.Force);
         //gameObject.GetComponent<Rigidbody>().position+= moveInput*(sens);
         transform.rotation = Quaternion.Euler(xRot, yRot, 0);
         if (cam.orthographic)
@@ -47,7 +48,7 @@ public class movement : MonoBehaviour
         float yMove = Input.GetAxisRaw("Vertical");
         //gameObject.transform.position -= new Vector3(xMove*10f*Time.deltaTime,0, yMove*10f*Time.deltaTime);
         //transform.Translate(new Vector3(xMove * 10f * Time.deltaTime, 0, yMove * 10f * Time.deltaTime));
-        moveInput = new Vector3(xMove*transform.forward , 0, yMove*transform.right );
+        moveInput = new Vector3(xMove , 0, yMove);
 
 
     }
