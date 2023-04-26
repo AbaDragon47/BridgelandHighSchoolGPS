@@ -18,6 +18,8 @@ public class movement : MonoBehaviour
     void Start() {
         rb=GetComponent<Rigidbody>();
         cam = GetComponentInChildren<Camera>();
+        cam.enabled=true;
+        GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
         cam.transform.position= transform.position+ new Vector3(0,1,0);
     }
     void Update(){
@@ -57,7 +59,7 @@ public class movement : MonoBehaviour
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
-        Debug.Log("x " + mouseX + "y " + mouseY);
+       // Debug.Log("x " + mouseX + "y " + mouseY);
 
         yRot += mouseX * .1f * sensX;
         xRot -= mouseY * .1f * sensY;
