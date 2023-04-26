@@ -57,7 +57,7 @@ public class movement : MonoBehaviour
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
 
-        Debug.Log("x " + mouseX + "y " + mouseY);
+       // Debug.Log("x " + mouseX + "y " + mouseY);
 
         yRot += mouseX * .1f * sensX;
         xRot -= mouseY * .1f * sensY;
