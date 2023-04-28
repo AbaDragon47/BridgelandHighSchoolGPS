@@ -8,9 +8,11 @@ public class MoveTo : MonoBehaviour
 {
     public Transform goal;
     public NavMeshAgent agent;
+    private Camera cam;
     // Start is called before the first frame update
     void Start()
     {
+        cam= Camera.main;
         agent= GetComponent<NavMeshAgent>();
         Camera.main.enabled=true;
         GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
@@ -24,15 +26,21 @@ public class MoveTo : MonoBehaviour
         // while current positon doesnt equal goal position
         //agent.destination=goal.position
         if(Input.GetKeyDown(KeyCode.Space)){
-            
             Camera.main.enabled=false;
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             ClickingMove();
         }
-        else{
-            Camera.main.enabled=true;
+        else if(Input.GetKeyUp(KeyCode.Space)){
+            Debug.Log("space stopped");
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
+            cam.enabled=true;
         }
+        
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        
     }
     private void ClickingMove(){
         Ray ray= GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
