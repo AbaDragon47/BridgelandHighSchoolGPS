@@ -9,6 +9,7 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 using TMPro;
+using UnityEditor;
 
 public class MenuOptions : MonoBehaviour
 {
@@ -108,12 +109,14 @@ public class MenuOptions : MonoBehaviour
         {
             if (password.text.Equals(DecodeFrom64(reader[1].ToString())))
             {
+                EditorUtility.DisplayDialog("Password Alert", "Password Validated", "Ok");
                 Debug.Log("Password Validated!");
                     
                 SlideUp();
             }
             else
             {
+                EditorUtility.DisplayDialog("Password Alert", "Password Denied", "Ok");
                 Debug.Log("Password denied");
             }
         }
@@ -122,7 +125,7 @@ public class MenuOptions : MonoBehaviour
             IDbCommand cmnd = dbcon.CreateCommand();
             cmnd.CommandText = "INSERT INTO login (username, password) VALUES ('" + username.text + "', '" + hash + "')";
             cmnd.ExecuteNonQuery();
-
+            EditorUtility.DisplayDialog("Password Alert", "Password Created", "Ok");
             Debug.Log("Password Inserted");
 
             SlideUp();
