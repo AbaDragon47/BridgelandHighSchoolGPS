@@ -76,10 +76,10 @@ public class MenuOptions : MonoBehaviour
 
     private void TaskOnClick()
     {
-        Debug.Log(username.text);
+       /* Debug.Log(username.text);
         Debug.Log(password.text);
 
-        Debug.Log("You clicked the button");
+        Debug.Log("You clicked the button");*/
 
 
         string hash = EncodePasswordToBase64(password.text);
@@ -102,7 +102,7 @@ public class MenuOptions : MonoBehaviour
         IDbCommand cmnd2 = dbcon.CreateCommand();
         IDataReader reader;
         string query = "SELECT * FROM login WHERE username = " + "'" + username.text + "'";
-        Debug.Log(query);
+        //Debug.Log(query);
         cmnd2.CommandText = query;
         reader = cmnd2.ExecuteReader();
         if (reader.Read())
@@ -110,14 +110,14 @@ public class MenuOptions : MonoBehaviour
             if (password.text.Equals(DecodeFrom64(reader[1].ToString())))
             {
                 EditorUtility.DisplayDialog("Password Alert", "Password Validated", "Ok");
-                Debug.Log("Password Validated!");
+                //Debug.Log("Password Validated!");
                     
                 SlideUp();
             }
             else
             {
                 EditorUtility.DisplayDialog("Password Alert", "Password Denied", "Ok");
-                Debug.Log("Password denied");
+                //Debug.Log("Password denied");
             }
         }
         else
@@ -126,7 +126,7 @@ public class MenuOptions : MonoBehaviour
             cmnd.CommandText = "INSERT INTO login (username, password) VALUES ('" + username.text + "', '" + hash + "')";
             cmnd.ExecuteNonQuery();
             EditorUtility.DisplayDialog("Password Alert", "Password Created", "Ok");
-            Debug.Log("Password Inserted");
+            //Debug.Log("Password Inserted");
 
             SlideUp();
         }
@@ -138,7 +138,7 @@ public class MenuOptions : MonoBehaviour
     }
     public void SlideUp()
     {
-        menu.rectTransform.localPosition=new Vector3(0, 600,0);
+        menu.rectTransform.localPosition=new Vector3(0, 1000,0);
         alrDown = false;
 
         Cursor.lockState = CursorLockMode.Locked;

@@ -16,7 +16,7 @@ public class MoveTo : MonoBehaviour
         agent= GetComponent<NavMeshAgent>();
         Camera.main.enabled=true;
         GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
-        Debug.Log(GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled);
+        //Debug.Log(GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled);
     }
 
     // Update is called once per frame
@@ -33,13 +33,14 @@ public class MoveTo : MonoBehaviour
             ClickingMove();
         }
         else if(Input.GetKeyUp(KeyCode.Space)){
-            Debug.Log("space stopped");
+            //Debug.Log("space stopped");
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
             cam.enabled=true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        
         
     }
     private void ClickingMove(){
