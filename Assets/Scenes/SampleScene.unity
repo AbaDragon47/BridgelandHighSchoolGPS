@@ -407,8 +407,8 @@ MonoBehaviour:
   login: {fileID: 1231662557}
   menu: {fileID: 1140479384}
   messageBox: {fileID: 0}
-  username: {fileID: 0}
-  password: {fileID: 0}
+  username: {fileID: 245471443}
+  password: {fileID: 995078585}
 --- !u!1 &163771332
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 245471444}
   - component: {fileID: 245471443}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UsernameInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,7 +1389,7 @@ GameObject:
   - component: {fileID: 995078586}
   - component: {fileID: 995078585}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PasswordInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
