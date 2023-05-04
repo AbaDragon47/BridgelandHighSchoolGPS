@@ -27,13 +27,21 @@ public class MoveTo : MonoBehaviour
         //if move to key is pressed
         // while current positon doesnt equal goal position
         //agent.destination=goal.position
-        if(Input.GetKeyDown(KeyCode.Space)){
+        Debug.Log(Input.GetKey(KeyCode.Space)?"ye":"no");
+        if(Input.GetKey(KeyCode.Space)){
             cam.enabled=false;
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Debug.Log("started clickMove");
             ClickingMove();
+        }
+        else if(!Input.GetKey(KeyCode.Space)){
+            Debug.Log("space stopped");
+            GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
+            cam.enabled=true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         
         
@@ -42,7 +50,6 @@ public class MoveTo : MonoBehaviour
     private void ClickingMove(){
         //bool hasHap=false; 
         Debug.Log("attempting to get pos");
-
         Ray ray= GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         bool hasHit= Physics.Raycast(ray, out hit);
         Debug.Log(hasHit?"got pos!":"failed");
@@ -50,15 +57,7 @@ public class MoveTo : MonoBehaviour
             setDest(hit.point);
             Debug.Log("where cube is: "+agent.transform.position+" goal: "+hit.point);  
         }
-        if(Input.GetKeyUp(KeyCode.Space)){
-            Debug.Log("space stopped");
-            GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
-            cam.enabled=true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        
-            
+         Debug.Log("ended clicking");   
     }
     private void setDest(Vector3 target){
         agent.SetDestination(target);
