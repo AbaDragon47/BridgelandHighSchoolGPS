@@ -9,6 +9,8 @@ public class MoveTo : MonoBehaviour
     public Transform goal;
     public NavMeshAgent agent;
     private Camera cam;
+    private bool hasHit;
+    RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,29 +28,37 @@ public class MoveTo : MonoBehaviour
         // while current positon doesnt equal goal position
         //agent.destination=goal.position
         if(Input.GetKeyDown(KeyCode.Space)){
-            Camera.main.enabled=false;
+            cam.enabled=false;
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Debug.Log("started clickMove");
             ClickingMove();
-        }
-        else if(Input.GetKeyUp(KeyCode.Space)){
-            //Debug.Log("space stopped");
-            GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
-            cam.enabled=true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
         
         
         
     }
     private void ClickingMove(){
+        //bool hasHap=false; 
+        Debug.Log("attempting to get pos");
+
         Ray ray= GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
         bool hasHit= Physics.Raycast(ray, out hit);
-        if(hasHit)
+        Debug.Log(hasHit?"got pos!":"failed");
+        if(hasHit){
             setDest(hit.point);
+            Debug.Log("where cube is: "+agent.transform.position+" goal: "+hit.point);  
+        }
+        if(Input.GetKeyUp(KeyCode.Space)){
+            Debug.Log("space stopped");
+            GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
+            cam.enabled=true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        
+            
     }
     private void setDest(Vector3 target){
         agent.SetDestination(target);
