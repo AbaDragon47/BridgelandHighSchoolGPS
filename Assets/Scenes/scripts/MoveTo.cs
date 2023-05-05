@@ -18,7 +18,6 @@ public class MoveTo : MonoBehaviour
         agent= GetComponent<NavMeshAgent>();
         Camera.main.enabled=true;
         GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
-        //Debug.Log(GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled);
     }
 
     // Update is called once per frame
@@ -33,11 +32,9 @@ public class MoveTo : MonoBehaviour
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            Debug.Log("started clickMove");
             ClickingMove();
         }
         else if(Input.GetKeyUp(KeyCode.Space)){
-            Debug.Log("space stopped");
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
             cam.enabled=true;
             Cursor.lockState = CursorLockMode.Locked;
@@ -48,8 +45,6 @@ public class MoveTo : MonoBehaviour
         
     }
     private void ClickingMove(){
-        //bool hasHap=false; 
-        Debug.Log("attempting to get pos");
         Ray ray= GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         bool hasHit= Physics.Raycast(ray, out hit);
         Debug.Log(hasHit?"got pos!":"failed");
@@ -57,7 +52,6 @@ public class MoveTo : MonoBehaviour
             setDest(hit.point);
             Debug.Log("where cube is: "+agent.transform.position+" goal: "+hit.point);  
         }
-         Debug.Log("ended clicking");   
     }
     private void setDest(Vector3 target){
         agent.SetDestination(target);
