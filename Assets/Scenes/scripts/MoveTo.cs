@@ -27,7 +27,7 @@ public class MoveTo : MonoBehaviour
         //if move to key is pressed
         // while current positon doesnt equal goal position
         //agent.destination=goal.position
-        Debug.Log(Input.GetKey(KeyCode.Space)?"ye":"no");
+        //Debug.Log(Input.GetKey(KeyCode.Space)?"ye":"no");
         if(Input.GetKey(KeyCode.Space)){
             cam.enabled=false;
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=true;
@@ -36,7 +36,7 @@ public class MoveTo : MonoBehaviour
             Debug.Log("started clickMove");
             ClickingMove();
         }
-        else if(!Input.GetKey(KeyCode.Space)){
+        else if(Input.GetKeyUp(KeyCode.Space)){
             Debug.Log("space stopped");
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
             cam.enabled=true;
