@@ -107,11 +107,11 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.1
-    agentHeight: 2
+    agentHeight: 1
     agentSlope: 43.1
     agentClimb: 0.52
-    ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    ledgeDropHeight: 5
+    maxJumpAcrossDistance: 6
     minRegionArea: 100
     manualCellSize: 0
     cellSize: 0.033333335
@@ -1261,8 +1261,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501140604}
-  m_LocalRotation: {x: 0.09288055, y: 0.006884536, z: -0.002974991, w: 0.995649}
-  m_LocalPosition: {x: 1.3440697, y: 9.382887, z: 14.187042}
+  m_LocalRotation: {x: 0.06024215, y: 0.6478771, z: -0.7532608, w: 0.09604339}
+  m_LocalPosition: {x: 84.45412, y: -10.273113, z: 135.69238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3627,11 +3627,7 @@ Transform:
   m_Father: {fileID: 30625099}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
-
 --- !u!1 &1350540918
-
-
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3641,12 +3637,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1350540919}
   m_Layer: 0
-  m_Name: 1522
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1350540919
 Transform:
   m_ObjectHideFlags: 0
@@ -4309,8 +4305,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698697170}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: 66.42, z: -155.61}
+  m_LocalRotation: {x: -0.04255328, y: 0.7037046, z: -0.043528512, w: -0.70788014}
+  m_LocalPosition: {x: 7.7413883, y: 6.625469, z: -125.44392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

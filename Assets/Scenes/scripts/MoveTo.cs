@@ -9,15 +9,17 @@ public class MoveTo : MonoBehaviour
     public Transform goal;
     public NavMeshAgent agent;
     private Camera cam;
+    private Camera navCam;
     private bool hasHit;
     RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
+        navCam= GameObject.FindWithTag("EditorOnly").GetComponent<Camera>();
         cam= Camera.main;
         agent= GetComponent<NavMeshAgent>();
         Camera.main.enabled=true;
-        GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=false;
+        navCam.enabled=false;
     }
 
     // Update is called once per frame
@@ -27,11 +29,12 @@ public class MoveTo : MonoBehaviour
         // while current positon doesnt equal goal position
         //agent.destination=goal.position
         //Debug.Log(Input.GetKey(KeyCode.Space)?"ye":"no");
-        if(Input.GetKey(KeyCode.Space)){
+        if(Input.GetKey(KeyCode.Space)){  
             cam.enabled=false;
             GameObject.FindWithTag("EditorOnly").GetComponent<Camera>().enabled=true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            camMove();
             ClickingMove();
         }
         else if(Input.GetKeyUp(KeyCode.Space)){
@@ -55,5 +58,15 @@ public class MoveTo : MonoBehaviour
     }
     private void setDest(Vector3 target){
         agent.SetDestination(target);
+    }
+    private void camMove(){
+        float xMove = Input.GetAxisRaw("Horizontal");
+        float yMove = Input.GetAxisRaw("Vertical");
+        float zMove= Input.GetKey(KeyCode.Q)? 0.5f:Input.GetKey(KeyCode.E)?-0.5f:0f;
+        //gameObject.transform.position -= new Vector3(xMove*10f*Time.deltaTime,0, yMove*10f*Time.deltaTime);
+        //transform.Translate(new Vector3(xMove * 10f * Time.deltaTime, 0, yMove * 10f * Time.deltaTime));
+        //moveInput = new Vector3(xMove*Time.deltaTime , zMove*Time.deltaTime, yMove*Time.deltaTime);
+        float speed= 5f;
+        navCam.transform.position= navCam.transform.position+ new Vector3(xMove*speed*Time.deltaTime , zMove*speed*Time.deltaTime, yMove*speed*Time.deltaTime);
     }
 }
